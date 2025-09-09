@@ -2123,11 +2123,10 @@ font_medium = lv_tiny_ttf_create_data(xiaozhi_font, xiaozhi_font_size, medium_fo
                 rt_tick_t now = rt_tick_get();
                 rt_tick_t delta = now - last_listen_tick;
                 rt_kprintf("last_listen_tick: %d, now: %d, delta: %d\n", last_listen_tick, now, delta);
-                /*
                 if (delta < rt_tick_from_millisecond(12000))
                 {
                     LOG_I("Websocket disconnected, entering low power mode");
-                    lv_display_trigger_activity(NULL);
+                    // lv_display_trigger_activity(NULL);
                     if(thiz->vad_enabled)
                     {
                         thiz->vad_enabled = false;
@@ -2145,11 +2144,10 @@ font_medium = lv_tiny_ttf_create_data(xiaozhi_font, xiaozhi_font_size, medium_fo
                         kws_demo();
                     }                  
                 }
-                */
                 if (delta > rt_tick_from_millisecond(12000))
                 {
                     LOG_I("30s no action \n");
-                    lv_display_trigger_activity(NULL);
+                    // lv_display_trigger_activity(NULL);
                     bt_interface_wr_link_policy_setting(
                     (unsigned char *)&g_bt_app_env.bd_addr,
                     BT_NOTIFY_LINK_POLICY_SNIFF_MODE | BT_NOTIFY_LINK_POLICY_ROLE_SWITCH); // open role switch
