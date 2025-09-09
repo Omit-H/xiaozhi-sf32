@@ -2137,7 +2137,7 @@ font_medium = lv_tiny_ttf_create_data(xiaozhi_font, xiaozhi_font_size, medium_fo
                     (unsigned char *)&g_bt_app_env.bd_addr,
                     BT_NOTIFY_LINK_POLICY_SNIFF_MODE | BT_NOTIFY_LINK_POLICY_ROLE_SWITCH); // open role switch
                     MCP_RGBLED_CLOSE(); 
-                    show_sleep_countdown_and_sleep();
+                    // show_sleep_countdown_and_sleep();
                     
                     if(aec_enabled) 
                     {
