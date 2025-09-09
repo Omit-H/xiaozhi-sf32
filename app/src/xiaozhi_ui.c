@@ -2006,7 +2006,7 @@ font_medium = lv_tiny_ttf_create_data(xiaozhi_font, xiaozhi_font_size, medium_fo
                 case UI_MSG_TTS_OUTPUT:
                     if(msg->data)
                     {
-                         int len = strlen(msg->data);
+                        int len = strlen(msg->data);
                         rt_kprintf("len == %d\n", len);
 
                         if (len > SHOW_TEXT_LEN) {
