@@ -322,7 +322,7 @@ void ui_sleep_callback(lv_timer_t *timer)
     {
         kws_demo();
     } 
-    show_sleep_countdown_and_sleep();
+    // show_sleep_countdown_and_sleep();
     lv_timer_delete(ui_sleep_timer);
     ui_sleep_timer = NULL;
 }
