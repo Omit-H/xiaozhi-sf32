@@ -2123,6 +2123,7 @@ font_medium = lv_tiny_ttf_create_data(xiaozhi_font, xiaozhi_font_size, medium_fo
                 rt_tick_t now = rt_tick_get();
                 rt_tick_t delta = now - last_listen_tick;
                 rt_kprintf("last_listen_tick: %d, now: %d, delta: %d\n", last_listen_tick, now, delta);
+                /*
                 if (delta < rt_tick_from_millisecond(12000))
                 {
                     LOG_I("Websocket disconnected, entering low power mode");
@@ -2144,6 +2145,7 @@ font_medium = lv_tiny_ttf_create_data(xiaozhi_font, xiaozhi_font_size, medium_fo
                         kws_demo();
                     }                  
                 }
+                */
                 if (delta > rt_tick_from_millisecond(12000))
                 {
                     LOG_I("30s no action \n");

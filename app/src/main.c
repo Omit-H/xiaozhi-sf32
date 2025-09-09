@@ -799,12 +799,14 @@ int main(void)
             xz_button_init();
             // xiaozhi2(0, NULL); // Start Xiaozhi
 #endif
+            /* 注释掉创建休眠定时器的代码
             // 在蓝牙和PAN连接成功后创建睡眠定时器
             if (!ui_sleep_timer && g_pan_connected)
             {
                 rt_kprintf("create sleep timer2\n");
                 ui_sleep_timer = lv_timer_create(ui_sleep_callback, 40000, NULL);
             }
+            */
         }
         else if (value == KEEP_FIRST_PAN_RECONNECT)
         {
