@@ -1861,7 +1861,7 @@ font_medium = lv_tiny_ttf_create_data(xiaozhi_font, xiaozhi_font_size, medium_fo
                         
                         // 创建定时器，稍后执行更新
                         standby_update_timer = lv_timer_create(standby_update_callback, 100, NULL);
-
+                        standby_update_timer_interval = standby_update_timer_interval_ins;
                     
                     break;
                     
@@ -1870,6 +1870,8 @@ font_medium = lv_tiny_ttf_create_data(xiaozhi_font, xiaozhi_font_size, medium_fo
                         // 删除定时器
                         lv_timer_delete(standby_update_timer);
                         standby_update_timer = NULL;
+                        // 重置间隔
+                        standby_update_timer_interval = standby_update_timer_interval_ins;
                     }
 
                     if (main_container) {
