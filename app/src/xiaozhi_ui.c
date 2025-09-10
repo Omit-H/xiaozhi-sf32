@@ -331,11 +331,30 @@ void ui_update_real_weather_and_time(void);
 
 static void standby_update_callback(lv_timer_t *timer)
 {
+    /* 使用 100ms -- 1s -- 1min 的定时器切换
     ui_update_real_weather_and_time();
     
     // 删除定时器（一次性使用）
     lv_timer_delete(timer);
     standby_update_timer = NULL;
+    */
+    // 100 毫秒间隔 —— 切换界面后的第一次更新
+    if (lv_timer_get_period() == 100) {
+        ui_update_real_weather_and_time();
+        // 将时间间隔设为 1s
+        lv_timer_set_period(standby_update_timer, 1000);
+    } else if (lv_timer_get_period() == 1000) {
+        // 1 秒间隔 —— 尝试与秒数同步，成功同步，更新为分钟级间隔
+        char *current_second_text = lv_label_get_text(ui_Label_second);
+        // 使用strcmp函数比较字符串
+        if (strcmp(current_text, "00") == 0) {
+            // 当current_second_text等于"00"时执行的操作
+            // 这里添加你的定时器切换逻辑
+            lv_timer_set_period(standby_update_timer, 60 * 1000);
+        }
+    } else if (lv_timer_get_period() == 60 * 1000) {
+        ui_update_real_weather_and_time();
+    }
 }
 
 
@@ -1834,6 +1853,12 @@ font_medium = lv_tiny_ttf_create_data(xiaozhi_font, xiaozhi_font_size, medium_fo
                     break;
                     
                 case UI_MSG_SWITCH_TO_MAIN:
+                    if (standby_update_timer) {
+                        // 删除定时器
+                        lv_timer_delete(standby_update_timer);
+                        standby_update_timer = NULL;
+                    }
+
                     if (main_container) {
                         if(ui_sleep_timer)
                         {
