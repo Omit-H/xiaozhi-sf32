@@ -222,6 +222,12 @@ static int g_battery_level = 60;        // 默认为满电
 static lv_obj_t *g_battery_fill = NULL;  // 电池填充对象
 static lv_obj_t *g_battery_label = NULL; // 电量标签
 
+// 全局变量存储天气更新的定时器间隔
+#define standby_update_timer_interval_ins 100
+#define standby_update_timer_interval_sec 1000
+#define standby_update_timer_interval_min 60000
+static int standby_update_timer_interval = standby_update_timer_interval_ins;
+
 void ctrl_wakeup(bool is_wakeup)
 {
     if (wakeup_switch != NULL) 
@@ -339,20 +345,22 @@ static void standby_update_callback(lv_timer_t *timer)
     standby_update_timer = NULL;
     */
     // 100 毫秒间隔 —— 切换界面后的第一次更新
-    if (lv_timer_get_period(standby_update_timer) == 100) {
+    if (standby_update_timer_interval == 100) {
         ui_update_real_weather_and_time();
         // 将时间间隔设为 1s
-        lv_timer_set_period(standby_update_timer, 1000);
-    } else if (lv_timer_get_period(standby_update_timer) == 1000) {
+        standby_update_timer_interval = standby_update_timer_interval_sec;
+        lv_timer_set_period(standby_update_timer, standby_update_timer_interval);
+    } else if (standby_update_timer_interval == standby_update_timer_interval_sec) {
         // 1 秒间隔 —— 尝试与秒数同步，成功同步，更新为分钟级间隔
         char *current_second_text = lv_label_get_text(ui_Label_second);
         // 使用strcmp函数比较字符串
         if (strcmp(current_second_text, "00") == 0) {
             // 当current_second_text等于"00"时执行的操作
             // 这里添加你的定时器切换逻辑
-            lv_timer_set_period(standby_update_timer, 60 * 1000);
+            standby_update_timer_interval = standby_update_timer_interval_min;
+            lv_timer_set_period(standby_update_timer, standby_update_timer_interval);
         }
-    } else if (lv_timer_get_period(standby_update_timer) == 60 * 1000) {
+    } else if (standby_update_timer_interval == standby_update_timer_interval_min) {
         ui_update_real_weather_and_time();
     }
 }
