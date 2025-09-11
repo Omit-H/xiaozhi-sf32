@@ -348,23 +348,23 @@ static void standby_update_callback(lv_timer_t *timer)
     // 100 毫秒间隔 —— 切换界面后的第一次更新
     if (standby_update_timer_interval == 100) {
         ui_update_real_weather_and_time();
-        // 将时间间隔设为 1s
-        standby_update_timer_interval = standby_update_timer_interval_sec;
-        lv_timer_set_period(standby_update_timer, standby_update_timer_interval);
-    } else if (standby_update_timer_interval == standby_update_timer_interval_sec) {
-        // 1 秒间隔 —— 尝试与秒数同步，成功同步，更新为分钟级间隔
-        time_t now;
-        struct tm* timeinfo;
+    //     // 将时间间隔设为 1s
+    //     standby_update_timer_interval = standby_update_timer_interval_sec;
+    //     lv_timer_set_period(standby_update_timer, standby_update_timer_interval);
+    // } else if (standby_update_timer_interval == standby_update_timer_interval_sec) {
+    //     // 1 秒间隔 —— 尝试与秒数同步，成功同步，更新为分钟级间隔
+    //     time_t now;
+    //     struct tm* timeinfo;
 
-        time(&now);
-        timeinfo = localtime(&now);
-        // 如果检测到0秒，并且当前是秒级定时器，则切换到分钟级
-        if(timeinfo->tm_sec == 0) {
-            // 设置定时器间隔为60秒（60000毫秒）
-            // 这里添加你的定时器切换逻辑
+    //     time(&now);
+    //     timeinfo = localtime(&now);
+    //     // 如果检测到0秒，并且当前是秒级定时器，则切换到分钟级
+    //     if(timeinfo->tm_sec == 0) {
+    //         // 设置定时器间隔为60秒（60000毫秒）
+    //         // 这里添加你的定时器切换逻辑
             standby_update_timer_interval = standby_update_timer_interval_min;
             lv_timer_set_period(standby_update_timer, standby_update_timer_interval);
-        }
+        // }
     } else if (standby_update_timer_interval == standby_update_timer_interval_min) {
         ui_update_real_weather_and_time();
     }
