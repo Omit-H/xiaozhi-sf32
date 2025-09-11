@@ -378,7 +378,7 @@ static void standby_weather_part_update_cb(lv_timer_t *timer)
 
         char curr_time_text[16];
         snprintf(curr_time_text, sizeof(curr_time_text), "%02d:%02d",
-                     curr_time_text->tm_hour, curr_time_text->tm_min);
+                     timeinfo->tm_hour, timeinfo->tm_min);
         lv_label_set_text(last_time, curr_time_text);
     }
 }
