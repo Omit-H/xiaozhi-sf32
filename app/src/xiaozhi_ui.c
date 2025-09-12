@@ -366,10 +366,10 @@ static void standby_weather_part_update_cb(lv_timer_t *timer)
     }
 
     // 如果距离上次天气更新超过 15 分钟，则尝试更新天气
-    if (difftime(now, last_network_fetch_time) >= 15 * 60) {
+    if (difftime(now, last_weather_update_time) >= 15 * 60) {
         // 在这里调用网络获取天气的函数
         ui_update_real_weather_and_time();
-        last_network_fetch_time = now; // 更新上次获取网络数据的时间戳
+        last_weather_update_time = now; // 更新上次获取网络数据的时间戳
     }
 }
 
