@@ -228,8 +228,6 @@ static lv_obj_t *g_battery_label = NULL; // 电量标签
 #define timer_interval_ins 100
 #define timer_interval_sec 1000
 #define timer_interval_min 60000
-static rt_uint32_t standby_update_timer_interval = timer_interval_ins;
-static rt_uint32_t standby_weather_part_update_timer_interval = timer_interval_sec;
 
 void ctrl_wakeup(bool is_wakeup)
 {
@@ -342,44 +340,36 @@ static void standby_update_callback(lv_timer_t *timer)
 {
     ui_update_real_weather_and_time();
     
-    // 移除删除定时器的操作
     // 删除定时器（一次性使用）
-    // lv_timer_delete(timer);
-    // standby_update_timer = NULL;
-
-    // 保持该定时器，将间隔改为 30 min 进行一次网络获取天气数据
-    if (standby_update_timer_interval == timer_interval_ins) {
-        // 将时间间隔设为 30 min
-        standby_update_timer_interval = 30 * timer_interval_min;
-        lv_timer_set_period(standby_update_timer, standby_update_timer_interval);
-    }
+    lv_timer_delete(timer);
+    standby_update_timer = NULL;
 }
 
 // standby界面调用接口更新天气部分的时间 —— 并不获取最新的天气数据
 static void standby_weather_part_update_cb(lv_timer_t *timer)
 {
+    static unsigned char last_display_min = 0;
+    static time_t last_weather_update_time = 0;
     time_t now;
     struct tm* timeinfo;
 
-    if (standby_weather_part_update_timer_interval == timer_interval_sec) {
-        // 1 秒间隔 —— 尝试与秒数同步，成功同步，更新为分钟级间隔
-        time(&now);
-        timeinfo = localtime(&now);
-        // 如果检测到0秒，并且当前是秒级定时器，则切换到分钟级
-        if(timeinfo->tm_sec == 0) {
-            // 设置定时器间隔为60秒（60000毫秒）
-            // 这里添加你的定时器切换逻辑
-            standby_weather_part_update_timer_interval = timer_interval_min;
-            lv_timer_set_period(standby_weather_part_update_timer, standby_weather_part_update_timer_interval);
-        }
-    } else if (standby_weather_part_update_timer_interval == timer_interval_min) {
-        time(&now);
-        timeinfo = localtime(&now);
+    time(&now);
+    timeinfo = localtime(&now);
 
+    // 如果检测到分钟不匹配，更新天气部分的时钟
+    if(timeinfo->tm_min != last_display_min) {
         char curr_time_text[16];
         snprintf(curr_time_text, sizeof(curr_time_text), "%02d:%02d",
                      timeinfo->tm_hour, timeinfo->tm_min);
         lv_label_set_text(last_time, curr_time_text);
+        last_display_min = timeinfo->tm_min;
+    }
+
+    // 如果距离上次天气更新超过 15 分钟，则尝试更新天气
+    if (difftime(now, last_network_fetch_time) >= 15 * 60) {
+        // 在这里调用网络获取天气的函数
+        ui_update_real_weather_and_time();
+        last_network_fetch_time = now; // 更新上次获取网络数据的时间戳
     }
 }
 
@@ -1874,11 +1864,9 @@ font_medium = lv_tiny_ttf_create_data(xiaozhi_font, xiaozhi_font_size, medium_fo
                             lv_timer_delete(standby_weather_part_update_timer);
                         }
 
-                        standby_update_timer_interval = timer_interval_ins;
-                        standby_weather_part_update_timer_interval = timer_interval_sec;
                         // 创建定时器，稍后执行更新
                         standby_update_timer = lv_timer_create(standby_update_callback, 100, NULL);
-                        standby_weather_part_update_timer = lv_timer_create(standby_weather_part_update_cb, standby_weather_part_update_timer_interval, NULL);
+                        standby_weather_part_update_timer = lv_timer_create(standby_weather_part_update_cb, timer_interval_sec, NULL);
                     break;
                     
                 case UI_MSG_SWITCH_TO_MAIN:
@@ -1886,15 +1874,11 @@ font_medium = lv_tiny_ttf_create_data(xiaozhi_font, xiaozhi_font_size, medium_fo
                         // 删除定时器
                         lv_timer_delete(standby_update_timer);
                         standby_update_timer = NULL;
-                        // 重置间隔
-                        standby_update_timer_interval = timer_interval_ins;
                     }
                     if (standby_weather_part_update_timer) {
                         // 删除定时器
                         lv_timer_delete(standby_weather_part_update_timer);
                         standby_weather_part_update_timer = NULL;
-                        // 重置间隔
-                        standby_weather_part_update_timer_interval = timer_interval_sec;
                     }
 
                     if (main_container) {
