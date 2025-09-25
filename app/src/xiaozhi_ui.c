@@ -214,12 +214,7 @@ lv_obj_t *ui_Image_second = NULL;//秒的图片
 lv_obj_t * ui_Arc2 = NULL;//电池容器
 lv_obj_t * ui_Label3 = NULL;
 
-static lv_timer_t* standby_update_timer = NULL;
 static lv_timer_t* standby_weather_part_update_timer = NULL;
-static rt_timer_t bg_update_timer = NULL;
-rt_timer_t update_time_ui_timer = RT_NULL;
-rt_timer_t update_weather_ui_timer = RT_NULL;
-static rt_timer_t g_split_text_timer = RT_NULL;
 
 // xiaozhi2
 extern rt_mailbox_t g_button_event_mb;
