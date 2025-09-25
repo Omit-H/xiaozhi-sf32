@@ -21,7 +21,6 @@
 #include "./mcp/mcp_api.h"
 #include "lv_seqimg.h"
 #include "xiaozhi_ui.h"
-#include "xiaozhi_weather.h"
 #include <time.h>
 #include "../weather/weather.h"
 #include "xiaozhi_audio.h"
