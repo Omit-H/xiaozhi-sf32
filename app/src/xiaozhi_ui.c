@@ -945,7 +945,7 @@ rt_err_t xiaozhi_ui_obj_init()
 
     standby_img_container = lv_obj_create(standby_screen);
     lv_obj_remove_flag(standby_img_container, LV_OBJ_FLAG_SCROLLABLE);
-    lv_obj_set_size(standby_img_container, scr_width, scr_height * 0.4); // 高度自适应
+    lv_obj_set_size(standby_img_container, scr_width, scr_height); // 高度自适应
     lv_obj_set_style_bg_color(standby_img_container, lv_color_hex(0x000000), LV_STATE_DEFAULT); // 调试用绿色背景
     lv_obj_set_style_bg_opa(standby_img_container, LV_OPA_20, LV_STATE_DEFAULT);
     lv_obj_set_style_pad_all(standby_img_container, 0, 0);
@@ -963,7 +963,7 @@ rt_err_t xiaozhi_ui_obj_init()
     lv_obj_add_flag(img_emoji, LV_OBJ_FLAG_ADV_HITTEST);     /// Flags
     lv_obj_clear_flag(img_emoji, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
     lv_img_set_zoom(img_emoji, (int)(LV_SCALE_NONE * g_scale)); // 根据缩放因子缩放
-    lv_seqimg_set_period(seqimg, 30);          // 每帧间隔 100ms
+    lv_seqimg_set_period(img_emoji, 30);          // 每帧间隔 100ms
     lv_seqimg_play(img_emoji);                     // 开始播放
 
     hour_tens_img = lv_img_create(standby_screen);
