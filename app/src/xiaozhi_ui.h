@@ -780,6 +780,31 @@ extern const lv_image_dsc_t spaceman_54;
 extern const lv_image_dsc_t spaceman_55;
 extern const lv_image_dsc_t spaceman_56;
 extern const lv_image_dsc_t spaceman_57;
+extern const lv_image_dsc_t spaceman_58;
+extern const lv_image_dsc_t spaceman_59;
+extern const lv_image_dsc_t spaceman_60;
+extern const lv_image_dsc_t spaceman_61;
+extern const lv_image_dsc_t spaceman_62;
+extern const lv_image_dsc_t spaceman_63;
+extern const lv_image_dsc_t spaceman_64;
+extern const lv_image_dsc_t spaceman_65;
+extern const lv_image_dsc_t spaceman_66;
+extern const lv_image_dsc_t spaceman_67;
+extern const lv_image_dsc_t spaceman_68;
+extern const lv_image_dsc_t spaceman_69;
+extern const lv_image_dsc_t spaceman_70;
+extern const lv_image_dsc_t spaceman_71;
+extern const lv_image_dsc_t spaceman_72;
+extern const lv_image_dsc_t spaceman_73;
+extern const lv_image_dsc_t spaceman_74;
+extern const lv_image_dsc_t spaceman_75;
+extern const lv_image_dsc_t spaceman_76;
+extern const lv_image_dsc_t spaceman_77;
+extern const lv_image_dsc_t spaceman_78;
+extern const lv_image_dsc_t spaceman_79;
+extern const lv_image_dsc_t spaceman_80;
+extern const lv_image_dsc_t spaceman_81;
+extern const lv_image_dsc_t spaceman_82;
 
 
 /*---------------------thinking*/
