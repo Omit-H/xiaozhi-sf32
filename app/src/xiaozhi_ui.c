@@ -945,7 +945,7 @@ rt_err_t xiaozhi_ui_obj_init()
 
     standby_img_container = lv_obj_create(standby_screen);
     lv_obj_remove_flag(standby_img_container, LV_OBJ_FLAG_SCROLLABLE);
-    lv_obj_set_size(standby_img_container, scr_width, scr_height); // 高度自适应
+    lv_obj_set_size(standby_img_container, scr_width, scr_height * 0.4); // 高度自适应
     lv_obj_set_style_bg_color(standby_img_container, lv_color_hex(0x000000), LV_STATE_DEFAULT); // 调试用绿色背景
     lv_obj_set_style_bg_opa(standby_img_container, LV_OPA_20, LV_STATE_DEFAULT);
     lv_obj_set_style_pad_all(standby_img_container, 0, 0);
@@ -953,7 +953,7 @@ rt_err_t xiaozhi_ui_obj_init()
     lv_obj_set_style_border_width(standby_img_container, 0, 0);
 
     // img_emoji = lv_img_create(standby_screen);
-    img_emoji = lv_img_create(standby_img_container);
+    img_emoji = lv_seqimg_create(standby_img_container);
     lv_seqimg_src_array(img_emoji, spaceman, sizeof(spaceman) / sizeof(spaceman[0]));//初始化提示小智还未连接
     lv_obj_set_width(img_emoji, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_height(img_emoji, LV_SIZE_CONTENT);    /// 1
