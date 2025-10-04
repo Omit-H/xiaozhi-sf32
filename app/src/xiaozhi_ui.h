@@ -716,6 +716,72 @@ extern const lv_image_dsc_t thinking_57;
 
 
 
+
+
+
+/*---------------------spaceman*/
+
+
+extern const lv_image_dsc_t spaceman_00;
+extern const lv_image_dsc_t spaceman_01;
+extern const lv_image_dsc_t spaceman_02;
+extern const lv_image_dsc_t spaceman_03;
+extern const lv_image_dsc_t spaceman_04;
+extern const lv_image_dsc_t spaceman_05;
+extern const lv_image_dsc_t spaceman_06;
+extern const lv_image_dsc_t spaceman_07;
+extern const lv_image_dsc_t spaceman_08;
+extern const lv_image_dsc_t spaceman_09;
+extern const lv_image_dsc_t spaceman_10;
+extern const lv_image_dsc_t spaceman_11;
+extern const lv_image_dsc_t spaceman_12;
+extern const lv_image_dsc_t spaceman_13;
+extern const lv_image_dsc_t spaceman_14;
+extern const lv_image_dsc_t spaceman_15;
+extern const lv_image_dsc_t spaceman_16;
+extern const lv_image_dsc_t spaceman_17;
+extern const lv_image_dsc_t spaceman_18;
+extern const lv_image_dsc_t spaceman_19;
+extern const lv_image_dsc_t spaceman_20;
+extern const lv_image_dsc_t spaceman_21;
+extern const lv_image_dsc_t spaceman_22;
+extern const lv_image_dsc_t spaceman_23;
+extern const lv_image_dsc_t spaceman_24;
+extern const lv_image_dsc_t spaceman_25;
+extern const lv_image_dsc_t spaceman_26;
+extern const lv_image_dsc_t spaceman_27;
+extern const lv_image_dsc_t spaceman_28;
+extern const lv_image_dsc_t spaceman_29;
+extern const lv_image_dsc_t spaceman_30;
+extern const lv_image_dsc_t spaceman_31;
+extern const lv_image_dsc_t spaceman_32;
+extern const lv_image_dsc_t spaceman_33;
+extern const lv_image_dsc_t spaceman_34;
+extern const lv_image_dsc_t spaceman_35;
+extern const lv_image_dsc_t spaceman_36;
+extern const lv_image_dsc_t spaceman_37;
+extern const lv_image_dsc_t spaceman_38;
+extern const lv_image_dsc_t spaceman_39;
+extern const lv_image_dsc_t spaceman_40;
+extern const lv_image_dsc_t spaceman_41;
+extern const lv_image_dsc_t spaceman_42;
+extern const lv_image_dsc_t spaceman_43;
+extern const lv_image_dsc_t spaceman_44;
+extern const lv_image_dsc_t spaceman_45;
+extern const lv_image_dsc_t spaceman_46;
+extern const lv_image_dsc_t spaceman_47;
+extern const lv_image_dsc_t spaceman_48;
+extern const lv_image_dsc_t spaceman_49;
+extern const lv_image_dsc_t spaceman_50;
+extern const lv_image_dsc_t spaceman_51;
+extern const lv_image_dsc_t spaceman_52;
+extern const lv_image_dsc_t spaceman_53;
+extern const lv_image_dsc_t spaceman_54;
+extern const lv_image_dsc_t spaceman_55;
+extern const lv_image_dsc_t spaceman_56;
+extern const lv_image_dsc_t spaceman_57;
+
+
 /*---------------------thinking*/
 
 #ifdef __cplusplus
