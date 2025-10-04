@@ -2027,23 +2027,24 @@ font_medium = lv_tiny_ttf_create_data(xiaozhi_font, xiaozhi_font_size, medium_fo
                     rt_mb_send(g_bt_app_mb, UPDATE_REAL_WEATHER_AND_TIME);
                     break;
                 case UI_MSG_STANDBY_EMOJI:
-                    if(msg->data)
-                    {
-                        if (strcmp(msg->data, "sleepy") == 0)
-                        {
-                            if (img_emoji) 
-                            {
-                                lv_img_set_src(img_emoji, &sleepy2); // 使用睡眠表情表示小智未连接
-                            }
-                        }
-                        else if (strcmp(msg->data, "funny") == 0)
-                        {
-                            if (img_emoji) 
-                            {
-                                lv_img_set_src(img_emoji, &funny2); // 使用睡眠表情表示小智未连接
-                            }
-                        }
-                    }
+                    lv_seqimg_src_array(img_emoji, &spaceman, sizeof(spaceman) / sizeof(spaceman[0]));  // standby界面使用旋转太空人gif
+                    // if(msg->data)
+                    // {
+                    //     if (strcmp(msg->data, "sleepy") == 0)
+                    //     {
+                    //         if (img_emoji) 
+                    //         {
+                    //             lv_img_set_src(img_emoji, &sleepy2); // 使用睡眠表情表示小智未连接
+                    //         }
+                    //     }
+                    //     else if (strcmp(msg->data, "funny") == 0)
+                    //     {
+                    //         if (img_emoji) 
+                    //         {
+                    //             lv_img_set_src(img_emoji, &funny2); // 使用睡眠表情表示小智未连接
+                    //         }
+                    //     }
+                    // }
                     break;
                 case UI_MSG_SWITCH_TO_STANDBY:
                     if (standby_screen) {
