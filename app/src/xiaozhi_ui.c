@@ -156,6 +156,7 @@ lv_obj_t *main_container;
 static lv_obj_t *header_row;
 static lv_obj_t *spacer;
 static lv_obj_t *img_container;
+static lv_obj_t *standby_img_container;
 
 static lv_obj_t *global_label1;
 static lv_obj_t *global_label2;
@@ -942,10 +943,18 @@ rt_err_t xiaozhi_ui_obj_init()
     lv_obj_add_event_cb(standby_header_row, header_row_event_handler, LV_EVENT_ALL, NULL);
     #endif
 
-    img_emoji = lv_img_create(standby_screen);
-    LV_IMAGE_DECLARE(sleepy2);
-    LV_IMAGE_DECLARE(funny2);
-    lv_img_set_src(img_emoji, &sleepy2);//初始化提示小智还未连接
+    standby_img_container = lv_obj_create(standby_screen);
+    lv_obj_remove_flag(standby_img_container, LV_OBJ_FLAG_SCROLLABLE);
+    lv_obj_set_size(standby_img_container, scr_width, scr_height * 0.4); // 高度自适应
+    lv_obj_set_style_bg_color(standby_img_container, lv_color_hex(0x000000), LV_STATE_DEFAULT); // 调试用绿色背景
+    lv_obj_set_style_bg_opa(standby_img_container, LV_OPA_20, LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_all(standby_img_container, 0, 0);
+    lv_obj_set_style_margin_all(standby_img_container, 0, 0);
+    lv_obj_set_style_border_width(standby_img_container, 0, 0);
+
+    // img_emoji = lv_img_create(standby_screen);
+    img_emoji = lv_img_create(standby_img_container);
+    lv_seqimg_src_array(img_emoji, spaceman, sizeof(spaceman) / sizeof(spaceman[0]));//初始化提示小智还未连接
     lv_obj_set_width(img_emoji, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_height(img_emoji, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_x(img_emoji, (int)(104 * g_scale));
@@ -954,6 +963,8 @@ rt_err_t xiaozhi_ui_obj_init()
     lv_obj_add_flag(img_emoji, LV_OBJ_FLAG_ADV_HITTEST);     /// Flags
     lv_obj_clear_flag(img_emoji, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
     lv_img_set_zoom(img_emoji, (int)(LV_SCALE_NONE * g_scale)); // 根据缩放因子缩放
+    lv_seqimg_set_period(seqimg, 30);          // 每帧间隔 100ms
+    lv_seqimg_play(img_emoji);                     // 开始播放
 
     hour_tens_img = lv_img_create(standby_screen);
     LV_IMAGE_DECLARE(img_1);
@@ -2027,7 +2038,7 @@ font_medium = lv_tiny_ttf_create_data(xiaozhi_font, xiaozhi_font_size, medium_fo
                     rt_mb_send(g_bt_app_mb, UPDATE_REAL_WEATHER_AND_TIME);
                     break;
                 case UI_MSG_STANDBY_EMOJI:
-                    lv_seqimg_src_array(img_emoji, &spaceman, sizeof(spaceman) / sizeof(spaceman[0]));  // standby界面使用旋转太空人gif
+                    lv_seqimg_src_array(img_emoji, spaceman, sizeof(spaceman) / sizeof(spaceman[0]));  // standby界面使用旋转太空人gif
                     // if(msg->data)
                     // {
                     //     if (strcmp(msg->data, "sleepy") == 0)
