@@ -958,7 +958,7 @@ rt_err_t xiaozhi_ui_obj_init()
     lv_obj_set_width(img_emoji, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_height(img_emoji, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_x(img_emoji, (int)(104 * g_scale));
-    lv_obj_set_y(img_emoji, (int)(-123 * g_scale));
+    lv_obj_set_y(img_emoji, 0);
     lv_obj_set_align(img_emoji, LV_ALIGN_CENTER);
     lv_obj_add_flag(img_emoji, LV_OBJ_FLAG_ADV_HITTEST);     /// Flags
     lv_obj_clear_flag(img_emoji, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
